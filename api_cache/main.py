@@ -65,7 +65,12 @@ async def proxy_q3(zona_id: str, confidence_min: float = 0.0):
     url = f"{URL_RESPUESTAS}/q3/{zona_id}?confidence_min={confidence_min}"
     return await fetch_and_cache(cache_key, url)
 
-
+@app.get("/q4/{zona_a}/{zona_b}")
+async def proxy_q4(zona_a: str, zona_b: str, confidence_min: float = 0.0):
+    cache_key = f"compare:density:{zona_a}:{zona_b}:conf={confidence_min}"
+    url = f"{URL_RESPUESTAS}/q4/{zona_a}/{zona_b}?confidence_min={confidence_min}"
+    return await fetch_and_cache(cache_key, url)
+    
 @app.get("/q5/{zona_id}")
 async def proxy_q5(zona_id: str, bins: int = 5, confidence_min: float = 0.0):
     cache_key = f"confidence_dist:{zona_id}:bins={bins}"

@@ -1,0 +1,43 @@
+services:
+  sistema_cache:
+    image: redis:alpine
+    container_name: sistema_cache
+    ports:
+      - "6379:6379"
+   
+    command: >
+      redis-server
+      --maxmemory 200mb
+      --maxmemory-policy allkeys-lru
+ 
+
+  api_cache:
+    build: ./api_cache
+    container_name: api_cache
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sistema_cache
+      - api_respuestas
+
+  api_metricas:
+    build: ./metricas
+    container_name: api_metricas
+    ports:
+      - "8001:8000"
+
+  api_respuestas:
+    build: ./generador_respuestas
+    container_name: api_respuestas
+    depends_on:
+      - api_metricas
+
+  app_trafico:
+    build: ./generador_trafico
+    container_name: app_trafico
+    depends_on:
+      - api_cache
+    environment:
+
+      - DISTRIBUCION=ZIPF     # Opciones: ZIPF  |  UNIFORME
+

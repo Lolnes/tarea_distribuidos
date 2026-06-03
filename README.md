@@ -232,4 +232,4 @@ tarea1-distribuidos/
 
 ---
 
-*Profesor: Nicolás Hidalgo — Ayudantes: Isidora González, Natalia Ortega, Joaquín Villegas, Vicente Díaz, Benjamín Aceituno*
+

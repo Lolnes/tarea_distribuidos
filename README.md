@@ -54,7 +54,7 @@ Generador de Tráfico
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/[usuario]/[repo].git
+git clone https://github.com/Lolnes/tarea_distribuidos
 cd tarea1-distribuidos
 ```
 
